@@ -2,6 +2,8 @@ import './App.scss';
 import React from "react";
 import Header from './components/Header/Header';
 import { User } from './models/user';
+import Login from './pages/Login/Login';
+import Main from './pages/Main/Main';
 
 enum Type {
   USER_EVENT = "userevent",
@@ -27,7 +29,8 @@ class App extends React.Component<IProps,IState> {
     };
   }
 
-  connect = () => {
+  connect = (username: string) => {
+    this.setState({username: username})
     if(!this.state.client) {
       const client = new WebSocket('ws://localhost:8345');
       client.onopen = () => {
@@ -56,26 +59,17 @@ class App extends React.Component<IProps,IState> {
 
   }
 
-  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({username:e.target.value})
-  }
-
   render() {
+
+    if(!this.state.username) {
+      return <Login connect={this.connect} />
+    }
+
     return (
       <div id="app">
         <Header users={this.state.currentUsers}/>
 
-        <br />
-        <br />
-        <br />
-        <input type="text" id="username" onChange={this.handleChange}></input>
-        <button onClick={this.connect}>connect</button>
-
-        {this.state.currentUsers.map(u => {
-            return (
-              <p>{u.username}</p>
-            )
-        })}
+        <Main />
 
       </div>
     );
