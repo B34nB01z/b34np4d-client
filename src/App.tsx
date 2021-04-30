@@ -46,7 +46,7 @@ class App extends React.Component<IProps,IState> {
         const stateToChange: any = {};
   
         if(data.type = Type.USER_EVENT) {
-          stateToChange.currentUsers = Object.values(data.data.users);
+          stateToChange.currentUsers = [...data.data];
         }
   
         this.setState({

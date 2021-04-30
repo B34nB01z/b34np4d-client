@@ -20,7 +20,7 @@ class Header extends React.Component<IProps, IState> {
                         <div className="user-list-hover">
                             {this.props.users.map(u => {
                                 return(
-                                    <p key={u.username}>
+                                    <p key={u.id}>
                                         {u.username}
                                     </p>
                                 )
