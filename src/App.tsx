@@ -1,9 +1,11 @@
 import './App.scss';
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Header from './components/Header/Header';
 import { User } from './models/user';
 import Login from './pages/Login/Login';
 import Main from './pages/Main/Main';
+import Pad from './pages/Pad/Pad';
 
 enum Type {
   USER_EVENT = "userevent",
@@ -67,9 +69,14 @@ class App extends React.Component<IProps,IState> {
 
     return (
       <div id="app">
-        <Header users={this.state.currentUsers}/>
 
-        <Main />
+        <Router>
+          <Header users={this.state.currentUsers}/>
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route path="/pad" component={Pad} />
+          </Switch>
+        </Router>
 
       </div>
     );

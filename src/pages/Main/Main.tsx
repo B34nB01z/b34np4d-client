@@ -53,7 +53,7 @@ class Main extends React.Component<{},IState> {
     if(error)
       return <div>Error: {JSON.stringify(error)}</div>
     else if(!isLoaded)
-      return <div>Loading ...</div>
+      return <div>Loading...</div>
     else
       return <CTFTable ctfs={items} />
   }

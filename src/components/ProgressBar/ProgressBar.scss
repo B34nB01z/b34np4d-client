@@ -1,0 +1,23 @@
+.progress-bar-container {
+  display: inline-block;
+  border-radius: 100%;
+  position: relative;
+}
+
+.progress-bar-text-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+
+  span {  
+    color: black;
+    font-family: 'JetBrains Mono', monospace;
+  }
+}

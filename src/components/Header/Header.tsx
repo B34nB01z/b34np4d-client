@@ -1,5 +1,6 @@
 import './Header.scss';
 import React from "react";
+import {Link} from 'react-router-dom';
 import { User } from '../../models/user';
 
 interface IProps{
@@ -14,7 +15,7 @@ class Header extends React.Component<IProps, IState> {
         return(
             <div id="nav">
                 <div className="inner">
-                    <h2>B34nP4d</h2>
+                    <Link to='/'><h2>B34nP4d</h2></Link>
                     <div className="user-list">
                         <p>Users: {this.props.users.length}</p>
                         <div className="user-list-hover">
