@@ -1,6 +1,7 @@
 import React from 'react';
 import CTFTable from '../../components/CTFTable/CTFTable';
 import { CTF } from '../../models/ctf';
+import './Main.scss';
 
 interface IState{
   ctfs: {error: string, isLoaded: boolean, items: CTF[]};
@@ -23,7 +24,11 @@ class Main extends React.Component<{},IState> {
     //fetch CTFs
     fetch(`http://localhost:9999/ctfs`, {method: "GET"})
       .then(res => res.json())
-      .then((res) => {
+      .then((res: CTF[]) => {
+        res.forEach(c => {
+          c.start = new Date(c.start);
+          c.end = new Date(c.end);
+        })
         this.setState({
           ctfs: {
             error: null,
@@ -56,7 +61,7 @@ class Main extends React.Component<{},IState> {
   render() {
 
     return(
-        <div>
+        <div id="main">
           {this.renderTable()}
         </div>
     );
