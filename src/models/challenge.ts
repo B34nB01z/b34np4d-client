@@ -4,5 +4,5 @@ export interface Challenge {
   name: string;
   category: number;
   points: number;
-  done: number;
+  done: boolean;
 }
