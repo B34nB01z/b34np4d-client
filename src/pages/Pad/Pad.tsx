@@ -79,6 +79,17 @@ class Pad extends React.Component<{}, PadState> {
       });
   }
 
+  handleDone = (chal: Challenge) => {
+    chal.done = !chal.done;
+    fetch('http://localhost:9999/chal', {method: 'PUT', body: JSON.stringify(chal)})
+      .then(res => {
+        if(res.ok) {
+          this.state.chals.items = this.state.chals.items.filter(c => c.id != chal.id).concat([chal]);
+          this.forceUpdate();
+        }
+      })
+  }
+
   /*renderChals() {
     const {error, isLoaded, items} = this.state.chals;
     if(error)
@@ -95,7 +106,7 @@ class Pad extends React.Component<{}, PadState> {
         <div className="left-bar">
           <Progress ctfName={this.state.ctf.name} ctfUrl={this.state.ctf.url} chals={this.state.chals.items} />
           <hr />
-          <ChalList chals={this.state.chals.items} cats={this.state.cats.items} />
+          <ChalList chals={this.state.chals.items} cats={this.state.cats.items} handleDone={this.handleDone}/>
         </div>
       </div>
     );

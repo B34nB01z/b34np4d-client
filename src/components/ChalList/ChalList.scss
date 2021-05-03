@@ -1,0 +1,14 @@
+.challenge-list {
+
+    li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        input {
+            margin-right: 10px;
+        }
+
+    }
+
+}
